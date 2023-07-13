@@ -1,4 +1,4 @@
-class Public::SearcheesController < ApplicationController
+class Public::SearchesController < ApplicationController
   def post_result
   end
 
