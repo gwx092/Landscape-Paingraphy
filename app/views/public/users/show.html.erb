@@ -1,2 +1,45 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div><%= flash[:notice] %></div>
+<div class="container">
+  <div class="p-3 mb-2 col-md-2 font-weight-bold bg-light text-dark">マイページ</div>
+    <%= form_with model: @user, url: edit_user_path do |f| %>
+    <table>
+      <tr>
+        <td><%= f.label :"登録情報" %></td>
+        <td><%= link_to "編集する", users_information_edit_path, class: 'btn ml-5 mb-3 btn-success' %></td>
+      </tr>
+    </table>
+    <% end %>
+    <div class="col-5">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="bg-light text-dark">氏名</td>
+            <td><%= @user.family_name %></td>
+          </tr>
+          <tr>
+            <td class="bg-light text-dark">ニックネーム</td>
+            <td><%= @user.nickname %></td>
+          </tr>
+          <tr>
+            <td class="bg-light text-dark">メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <table>
+      <tr>
+        <td class="mb-3">フォロー一覧</td>
+        <td><%= link_to "一覧を見る", follows_followings_path, class: 'btn ml-5 btn-primary' %></td>
+      </tr>
+      <tr>
+        <td class="mb-3">フォロワー一覧</td>
+        <td><%= link_to "一覧を見る", follows_followers_path, class: 'btn ml-5 btn-primary' %></td>
+      </tr>
+      <tr>
+        <td class="mb-3">いいね一覧</td>
+        <td><%= link_to "一覧を見る", favorites_path, class: 'btn ml-5 btn-primary' %></td>
+      </tr>
+    </table>
+</div>
+

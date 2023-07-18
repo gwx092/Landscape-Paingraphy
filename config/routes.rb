@@ -21,9 +21,13 @@ Rails.application.routes.draw do
     resources :favorites, only: [:index]
     get 'follows/followings'
     get 'follows/followers'
-    resources :users, only: [:show, :edit]
+    #users quit outのみresources :usersの上に記述しurlの誤認識を防ぐ(下にあるとquitがshowページ認識される)
     get '/users/quit', to: 'users#quit'
     patch '/users/out', to: 'users#out' 
+    resources :users, only: [:show, :edit, :update]
+    #重複回避のルーティング
+    get '/users/information', to: 'users#show'
+    get '/users/information/edit', to: 'users#edit'
     resources :posts, only: [:new, :create, :show, :index]
     #ゲストログイン用ルーティング
     post 'sessions/guest_sign_in', to: 'sessions#guest_sign_in'

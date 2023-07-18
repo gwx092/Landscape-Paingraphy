@@ -1,2 +1,14 @@
-<h1>Public::Users#quit</h1>
-<p>Find me in app/views/public/users/quit.html.erb</p>
+<div class="container text-center">
+  <div class="mb-3 font-weight-bold">本当に退会しますか？</div>
+  <div class="mb-5">
+    退会すると、会員登録情報や<br>
+    これまでの投稿などの履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </div>
+  <div>
+    <p>
+      <%= link_to "退会しない", users_information_path, class: 'btn btn-primary' %>
+      <%= link_to "退会する", users_out_path, method: :patch, class: 'btn ml-3 btn-danger' %>
+    </p>
+  </div>
+</div>

@@ -1,18 +1,25 @@
+<div><%= flash[:notice] %></div>
 <div class="container">
-  <div class="row">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-      <h1>Landscape Paingraphy</h1>
-      <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-          <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-        </div>
-        <div class="row">
-          <%= link_to '新規登録',new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up" %>
-        </div>
-        <div class="row">
-          <%= link_to 'ゲストログイン（閲覧用）', sessions_guest_sign_in_path, method: :post, class: "btn btn-warning btn-sm btn-block" %>
+  <div class="col-xs-6">
+    <div class="center-block text-center">
+      <div><%= image_tag 'top.jpg', size: '1200x600' %>
+        <div style="position:absolute; top:200px; left:700px; width: 600px;">
+          <p class="text-left text-white">このサイトは、風景写真・画像専門のSNSサイトになります。<br>
+          <p class="text-left text-white">投稿や他のユーザーの投稿の閲覧にはログインが必要ですが、<br>
+          <p class="text-left text-white">ゲストログインでのログインも可能となっております。
         </div>
       </div>
+    </div>
+  </div>
+  <div class="btn-wrapper col-10 mt-5 mx-auto">
+    <div class="row">
+      <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+    </div>
+    <div class="row">
+      <%= link_to '新規登録',new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up" %>
+    </div>
+    <div class="row">
+      <%= link_to 'ゲストログイン（閲覧用）', sessions_guest_sign_in_path, method: :post, class: "btn btn-warning btn-sm mb-3 btn-block" %>
     </div>
   </div>
 </div>
