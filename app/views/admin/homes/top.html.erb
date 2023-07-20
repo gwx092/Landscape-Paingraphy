@@ -1,0 +1,19 @@
+<div><%= flash[:notice] %></div>
+<div class="container">
+  <div class="col-xs-6">
+    <div class="center-block text-center">
+      <div><%= image_tag 'top.jpg', size: '1200x600' %>
+        <div style="position:absolute; top:200px; left:700px; width: 600px;">
+          <p class="text-left text-white">このページは、Landscape-Paingraphyの管理者ページになります。<br>
+          <p class="text-left text-white">管理者メールアドレスおよびパスワードを入力し<br>
+          <p class="text-left text-white">ログインの上、ご使用ください。
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-wrapper col-10 mt-5 mx-auto">
+    <div class="row">
+      <%= link_to 'ログイン',new_admin_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+    </div>
+  </div>
+</div>

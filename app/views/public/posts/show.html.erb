@@ -1,2 +1,47 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div>
+  <%= image_tag @post.get_image, size: "600x300" %>
+  <p>タイトル：<%= @post.title %></p>
+  <p>説明：<%= @post.body %></p>
+  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(50,50) %></p>
+  <p>ユーザーネーム：<%= @post.user.nickname %></p>
+  <% if current_user.following?(@post.user) %>
+    <%= link_to "フォロー外す", user_follows_path(@post.user.id), method: :delete %>
+  <% else %>
+    <%= link_to "フォローする", user_follows_path(@post.user.id), method: :post %>
+  <% end %>
+  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete, class: 'btn ml-3 btn-danger' %>
+  <% end %>
+  <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+</div>
+<div>
+  <p>コメント件数：<%= @post.comments.count %></p>
+  <% @post.comments.each do |comment| %>
+    <p><%= image_tag comment.user.get_profile_image(50,50) %></p>
+    <%= comment.user.nickname %>
+    <%= comment.comment %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <% if comment.user == current_user %>
+      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

@@ -20,7 +20,7 @@
             <% end %>
           </li>
           <li class="ml-4">
-            <%=  link_to post_path(current_user),class: 'nav-link text-light' do %>
+            <%=  link_to new_post_path(current_user),class: 'nav-link text-light' do %>
               投稿
             <% end %>
           </li>
@@ -36,7 +36,7 @@
           </li>
         <% elsif admin_signed_in? %>
           <li class="ml-4">
-            <%=  link_to admin_path,class: 'nav-link text-light' do %>
+            <%=  link_to admin_users_path,class: 'nav-link text-light' do %>
               ユーザー一覧
             <% end %>
           </li>

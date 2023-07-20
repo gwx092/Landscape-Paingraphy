@@ -13,6 +13,10 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
+            <td class="bg-light text-dark">プロフィール画像</td>
+            <td><%= image_tag @user.get_profile_image(50,50) %></td>
+          </tr>
+          <tr>
             <td class="bg-light text-dark">氏名</td>
             <td><%= @user.family_name %></td>
           </tr>
@@ -30,16 +34,15 @@
     <table>
       <tr>
         <td class="mb-3">フォロー一覧</td>
-        <td><%= link_to "一覧を見る", follows_followings_path, class: 'btn ml-5 btn-primary' %></td>
+        <td><%= link_to "一覧を見る", follows_followings_path(user_id: @user.id), class: 'btn ml-5 btn-primary' %></td>
       </tr>
       <tr>
         <td class="mb-3">フォロワー一覧</td>
-        <td><%= link_to "一覧を見る", follows_followers_path, class: 'btn ml-5 btn-primary' %></td>
+        <td><%= link_to "一覧を見る", follows_followers_path(user_id: @user.id), class: 'btn ml-5 btn-primary' %></td>
       </tr>
       <tr>
         <td class="mb-3">いいね一覧</td>
-        <td><%= link_to "一覧を見る", favorites_path, class: 'btn ml-5 btn-primary' %></td>
+        <td><%= link_to "一覧を見る", favorites_user_path(@user), class: 'btn ml-5 btn-primary' %></td>
       </tr>
     </table>
 </div>
-

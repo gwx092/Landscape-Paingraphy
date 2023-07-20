@@ -1,2 +1,59 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+    <%= form_with model: @user, url: admin_user_path do |f| %>
+    <div class="p-3 mb-4 col-md-4 font-weight-bold bg-light text-dark"><%= @user.family_name %>さんの詳細</div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3"><%= f.label :family_name, "ユーザーID" %></div>
+        <div class="col-lg-3"><%= @user.id %></div>
+        <div class="col-lg-3"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3"><%= f.label :family_name, "氏名" %></div>
+        <div class="col-lg-3"><%= @user.family_name %></div>
+        <div class="col-lg-3"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3"><%= f.label :nickname, "ニックネーム" %></div>
+        <div class="col-lg-3"><%= @user.nickname %></div>
+        <div class="col-lg-3"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3"><%= f.label :email, "メールアドレス" %></div>
+        <div class="col-lg-3"><%= @user.email %></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3"><%= f.label :email, "ユーザーステータス" %></div>
+        <div class="col-lg-3">
+         <% if @user.is_deleted == false %>
+           <strong class="text-success">有効</strong>
+         <% else %>
+           <strong class="text-secondary">無効</strong>
+         <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <%= link_to "編集する", edit_admin_user_path, class: 'btn btn-success', style: 'width:100px' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
