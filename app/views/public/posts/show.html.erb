@@ -1,47 +1,49 @@
-<div>
-  <%= image_tag @post.get_image, size: "600x300" %>
-  <p>タイトル：<%= @post.title %></p>
-  <p>説明：<%= @post.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @post.user.get_profile_image(50,50) %></p>
-  <p>ユーザーネーム：<%= @post.user.nickname %></p>
-  <% if current_user.following?(@post.user) %>
-    <%= link_to "フォロー外す", user_follows_path(@post.user.id), method: :delete %>
-  <% else %>
-    <%= link_to "フォローする", user_follows_path(@post.user.id), method: :post %>
-  <% end %>
-  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete, class: 'btn ml-3 btn-danger' %>
-  <% end %>
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-</div>
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <p><%= image_tag comment.user.get_profile_image(50,50) %></p>
-    <%= comment.user.nickname %>
-    <%= comment.comment %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <% if comment.user == current_user %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@post, @comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+<div class="post-detail py-5 bg-light">
+  <div class="container">
+    <div class="card mx-auto mt-4 shadow-lg">
+      <img class="card-img-top"><%= image_tag @post.get_image %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-2">
+            <img class="img-fluid rounded-circle"><%= image_tag @post.user.get_profile_image(50,50) %>
+          </div>
+          <div class="col-sm-12 col-md-10">
+            <p class="card-title">
+              <a class="text-dark">タイトル：<%= @post.title %></a>
+            </p>
+            <p class="card-title">説明：<%= @post.body %></p>
+            <span>ユーザーネーム：<%= @post.user.nickname %> | </span>
+            <span>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %> | </span>
+            <span id="favorite_buttons_<%= @post.id %>">
+              <%= render "public/favorites/favorite", post: @post %> | 
+            </span>
+            <span>コメント件数：<%= @post.comments.count %></span>
+            <p><%= render_with_tags(@post.body) %></p>
+            <div>
+              <% if current_user.following?(@post.user) %>
+                <%= link_to "フォロー外す", user_follows_path(@post.user.id), method: :delete, class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to "フォローする", user_follows_path(@post.user.id), method: :post, class: 'btn btn-info' %>
+              <% end %>
+            </div>
+            <div>
+              <% if @post.user == current_user %>
+                <%= link_to "投稿を削除", post_path(@post), method: :delete, class: 'btn mt-3 btn-danger' %>
+              <% end %>
+            </div>
+            <div>
+              <p id="comments_area">
+                <%= render "public/comments/comment", posts: @post %>
+              </p>
+            </div>
+            <div>
+              <p id="comments_form">
+                <%= render "public/comments/form", post: @post, comment: @comment %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

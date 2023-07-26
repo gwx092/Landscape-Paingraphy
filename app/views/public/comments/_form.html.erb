@@ -1,0 +1,4 @@
+<%= form_with model: [@post, @comment], remote: true do |f| %>
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control border-dark", style: 'width:300px' %>
+  <%= f.submit "送信する", class: 'btn mt-4 mb-4 btn-primary', style: 'width:160px' %>
+<% end %>

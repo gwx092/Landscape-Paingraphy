@@ -1,18 +1,40 @@
 <% if @users.exists? %>
   <% @users.each do |user| %>
-    <table>
+    <!--<table class="table-info">-->
+    <!--  <thead class="border-bottom">-->
+    <!--    <tr>-->
+    <!--      <th class="col-lg-4">ニックネーム</th>-->
+    <!--      <th></th>-->
+    <!--      <th class="col-lg-4">フォロー数</th>-->
+    <!--      <th></th>-->
+    <!--      <th class="col-lg-4">フォロワー数</th>-->
+    <!--    </tr>-->
+    <!--  </thead>-->
+    <!--  <tbody>-->
+    <!--    <tr>-->
+    <!--      <td><%#= user.nickname %></td>-->
+    <!--      <td></td>-->
+    <!--      <td><%#= user.followings.count %></td>-->
+    <!--      <td></td>-->
+    <!--      <td><%#= user.followers.count %></td>-->
+    <!--    </tr>-->
+    <!--  </tbody>-->
+    <!--</table>-->
+    <table class="table">
       <thead>
         <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
+          <th scope="col"></th>
+          <th scope="col">ニックネーム</th>
+          <th scope="col">フォロー数</th>
+          <th scope="col">フォロワー数</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= user.name %></td>
-          <td>フォロー数: <%= user.followings.count %></td>
-          <td>フォロワー数: <%= user.followers.count %></td>
+          <th scope="row"></th>
+          <td><%= user.nickname %></td>
+          <td><%= user.followings.count %></td>
+          <td><%= user.followers.count %></td>
         </tr>
       </tbody>
     </table>

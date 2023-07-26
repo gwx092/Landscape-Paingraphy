@@ -14,6 +14,9 @@ class User < ApplicationRecord
   #throughでスルーするテーブル、sourceで参照するカラムを指定
   has_many :followings, through: :follows, source: :followed
   has_many :followers, through: :reverse_of_follows, source: :follower
+  #バリデーション
+  validates :family_name, presence: true
+  validates :nickname, presence: true
 
   def get_profile_image(width, height)
   unless profile_image.attached?
@@ -46,7 +49,7 @@ class User < ApplicationRecord
       user.nickname = "ゲストさん"
     end
   end
-  
+
   #検索条件分岐
   def self.looks(search, word)
     if search == "perfect_match"

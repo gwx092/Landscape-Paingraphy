@@ -1,4 +1,4 @@
-<div><%= flash[:notice] %></div>
+
 <div class="container">
   <div class="col-xs-6">
     <div class="center-block text-center">
@@ -6,7 +6,7 @@
         <div style="position:absolute; top:200px; left:700px; width: 600px;">
           <p class="text-left text-white">このサイトは、風景写真・画像専門のSNSサイトになります。<br>
           <p class="text-left text-white">投稿や他のユーザーの投稿の閲覧にはログインが必要ですが、<br>
-          <p class="text-left text-white">ゲストログインでのログインも可能となっております。
+          <p class="text-left text-white">ゲストログインでも利用可能となっております。
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
       <%= link_to '新規登録',new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up" %>
     </div>
     <div class="row">
-      <%= link_to 'ゲストログイン（閲覧用）', sessions_guest_sign_in_path, method: :post, class: "btn btn-warning btn-sm mb-3 btn-block" %>
+      <%= link_to 'ゲストログイン（閲覧用）', public_guest_sign_in_path, method: :post, class: "btn btn-warning btn-sm mb-3 btn-block" %>
     </div>
   </div>
 </div>

@@ -5,17 +5,24 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   #deviseのadmin側ルーティング
-  devise_for :admins,
+  devise_for :admin,
     skip: [:registrations, :passwords] ,
     controllers: {
       sessions: "admin/sessions"
     }
-    
-  
+
+  #ゲストログイン用ルーティング
+  devise_scope :user do
+    post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   #public側のルーティング
   scope module: :public do
     root to: 'homes#top'
-    get "search" => "searches#search"
+    #タグのルーティング
+    get '/post/tag/:name' => 'posts#tag'
+    get '/post/tag' => 'posts#tag'
+    get 'search' => 'searches#search'
     get 'searches/post_result'
     get 'searches/user_result'
     get 'searches/tag_result'
@@ -24,7 +31,7 @@ Rails.application.routes.draw do
     get 'follows/followers'
     #users quit outのみresources :usersの上に記述しurlの誤認識を防ぐ(下にあるとquitがshowページ認識される)
     get '/users/quit', to: 'users#quit'
-    patch '/users/out', to: 'users#out' 
+    patch '/users/out', to: 'users#out'
     resources :users, only: [:show, :edit, :update] do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'
@@ -41,9 +48,9 @@ Rails.application.routes.draw do
       #id不要のルーティング
       resource :favorites, only: [:create, :destroy]
     end
-    #ゲストログイン用ルーティング
-    post 'sessions/guest_sign_in', to: 'sessions#guest_sign_in'
   end
+
+
   #admin側のルーティング
   namespace :admin do
     get '' => 'homes#top'

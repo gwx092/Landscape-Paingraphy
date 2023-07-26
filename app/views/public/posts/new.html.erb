@@ -1,3 +1,14 @@
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<div>
+  <%= flash[:notice] %>
+</div>
 <div class="container">
   <div class="row">
     <div class="p-3 mb-4 mt-4 col-md-2 font-weight-bold bg-light text-dark">投稿</div>
@@ -20,7 +31,7 @@
       </div>
       <div class="form-group">
         <div class="row">
-          <div class="col-lg-3"><%= f.label :body, "説明" %></div>
+          <div class="col-lg-3"><%= f.label :body, "説明文" %><br><%= f.label :body, "(#を先頭につけるとハッシュタグになります)" %></div>
           <div class="col-lg-1"></div>
           <div class="col-lg-3"><%= f.text_area :body, class: "form-control border-dark", style: 'width:300px' %></div>
         </div>
@@ -33,3 +44,4 @@
     <% end %>
   </div>
 </div>
+

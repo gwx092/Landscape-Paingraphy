@@ -3,6 +3,12 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tags
+  #バリデーション
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :image, presence: true
   
   def get_image
     unless image.attached?
@@ -29,6 +35,30 @@ class Post < ApplicationRecord
       @post = Post.where("title LIKE?","%#{word}%")
     else
       @post = Post.all
+    end
+  end
+  
+  #投稿の作成、更新時に下記処理を行う
+  after_create do
+    #作成した投稿を探す
+    post = Post.find_by(id: id)
+    #bodyに打ち込まれたタグを検出
+    tags = body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    post.tags = []
+    tags.uniq.map do |tag|
+      # ハッシュタグは先頭の#を外した上で保存
+      tag = Tag.find_or_create_by(tag_name: tag.downcase.delete('#'))
+      post.tags << tag
+    end
+  end
+  #更新アクション
+  before_update do
+    post = Post.find_by(id: id)
+    post.tags.clear
+    tags = body.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    tags.uniq.map do |tag|
+      tag = Tag.find_or_create_by(tag_name: tag.downcase.delete('#'))
+      post.tags << tag
     end
   end
 end
