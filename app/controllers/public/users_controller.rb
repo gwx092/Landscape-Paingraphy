@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :favorites, :comments, :destroy]
+  #before_action :set_user, only: [:show, :favorites, :comments, :destroy]
 
   def show
     #ログイン中のユーザーidを取得し、@userへ格納
@@ -56,7 +56,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:family_name, :nickname, :email, :is_deleted, :profile_image)
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
+  # def set_user
+  #   @user = User.find(params[:id])
+  # end
 end

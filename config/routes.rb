@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     #重複回避のルーティング
     get '/users/information', to: 'users#show'
     get '/users/information/edit', to: 'users#edit'
+    patch '/users/information', to: 'users#update'
     resources :posts, only: [:new, :create, :show, :index, :destroy] do
       resources :comments, only: [:create, :destroy]
       #id不要のルーティング

@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @post = Post.new
     @post.post_tags.new
@@ -20,8 +22,10 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-
+    #@posts = Post.all
+    user_ids = current_user.followings.pluck(:id) # フォローしているユーザーのid一覧
+    user_ids.push(current_user.id) # 自身のidを一覧に追加する
+    @posts = Post.where(user_id: user_ids).order(created_at: :desc)
   end
 
   def destroy

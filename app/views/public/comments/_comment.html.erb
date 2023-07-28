@@ -1,9 +1,13 @@
 <% @post.comments.each do |comment| %>
-  <p><%= image_tag comment.user.get_profile_image(50,50) %></p>
-  <%= comment.user.nickname %>
-  <%= comment.comment %>
-  <%= comment.created_at.strftime('%Y/%m/%d') %>
-  <% if comment.user == current_user %>
-    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class:"btn btn-danger" %>
-  <% end %>
+  <div class="mt-4">
+    <%= image_tag comment.user.get_profile_image(50,50) %>
+    <%= comment.user.nickname %>
+  </div>
+  <div>
+    <span>コメント：<%= comment.comment %></span>
+    <span class="ml-4"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+    <% if comment.user == current_user %>
+      <span class="ml-4"><%= link_to "コメントを削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class:"btn btn-danger" %></span>
+    <% end %>
+  </div>
 <% end %>

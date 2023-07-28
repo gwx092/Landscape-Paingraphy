@@ -5,20 +5,19 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-12 col-md-2">
-            <img class="img-fluid rounded-circle"><%= image_tag @post.user.get_profile_image(50,50) %>
+            <img class="img-fluid rounded-circle"><%= image_tag @post.user.get_profile_image(100,100) %>
           </div>
           <div class="col-sm-12 col-md-10">
             <p class="card-title">
               <a class="text-dark">タイトル：<%= @post.title %></a>
             </p>
-            <p class="card-title">説明：<%= @post.body %></p>
+            <p class="card-title">説明：<%= render_with_tags(@post.body) %></p>
             <span>ユーザーネーム：<%= @post.user.nickname %> | </span>
             <span>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %> | </span>
             <span id="favorite_buttons_<%= @post.id %>">
-              <%= render "public/favorites/favorite", post: @post %> | 
-            </span>
+              <%= render "public/favorites/favorite", post: @post %>
+            </span> | 
             <span>コメント件数：<%= @post.comments.count %></span>
-            <p><%= render_with_tags(@post.body) %></p>
             <div>
               <% if current_user.following?(@post.user) %>
                 <%= link_to "フォロー外す", user_follows_path(@post.user.id), method: :delete, class: 'btn btn-danger' %>
@@ -32,9 +31,9 @@
               <% end %>
             </div>
             <div>
-              <p id="comments_area">
+              <div id="comments-area">
                 <%= render "public/comments/comment", posts: @post %>
-              </p>
+              </div>
             </div>
             <div>
               <p id="comments_form">
