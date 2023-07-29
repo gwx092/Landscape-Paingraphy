@@ -1,9 +1,9 @@
 <% @post.comments.each do |comment| %>
-  <div class="mt-4">
+  <div class="mt-4 border-top">
     <%= image_tag comment.user.get_profile_image(50,50) %>
     <%= comment.user.nickname %>
   </div>
-  <div>
+  <div class="border-bottom">
     <span>コメント：<%= comment.comment %></span>
     <span class="ml-4"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
     <% if comment.user == current_user %>
