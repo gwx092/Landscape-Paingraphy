@@ -20,7 +20,9 @@
 - 自分のおすすめの風景を投稿する時
 ​
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
+- ER図(https://app.diagrams.net/#G1VYsJoOZs9X99JHbb_1wAQACupB7WUznd)
+- 【public】UI Flow(https://app.diagrams.net/#G1mcKNBUCMAB5gGfTe-Mc1xgOO5SiFkZXc)
+- 【admin】UI Flow(https://app.diagrams.net/#G1_qC0AGP4QmiLZymr_SkRdNP3k5d7-7xg)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,4 +36,4 @@
   - (https://pro-foto.jp/f_25.html)
   - (https://girlydrop.com/landscape)
 - フリー風景イラストとして以下を使用
-  - (https://pixta.jp/illustration?waad=gEKtD5WO&gad=1&gclid=Cj0KCQjwwISlBhD6ARIsAESAmp7uZTReC6_Uf1ZSIeCQO0E38R44tEmaZddXGs2IycMj5gsCih5TwisaAkbsEALw_wcB)
+  - (https://publicdomainq.net/)
