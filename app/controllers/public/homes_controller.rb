@@ -4,13 +4,10 @@ class Public::HomesController < ApplicationController
   end
 
   def guest_sign_in
-    #ゲストユーザーを探すor作成するメソッド
-    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
-    #パスワードをランダムで設定
-      user.password = SecureRandom.urlsafe_base64
-    #not nullの項目を設定
-      user.family_name = "ゲスト"
-      user.nickname = "ゲストさん"
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|#ゲストユーザーを探すor作成するメソッド
+      user.password = SecureRandom.urlsafe_base64#パスワードをランダムで設定
+      user.family_name = "ゲスト"#not nullの項目を設定
+      user.nickname = "ゲストさん"#not nullの項目を設定
     end
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'

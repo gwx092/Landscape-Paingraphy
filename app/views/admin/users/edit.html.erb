@@ -34,8 +34,8 @@
       <div class="row">
         <div class="col-lg-3"><%= f.label :is_deleted, "ユーザーステータス" %></div>
         <div class="col-lg-3">
-          <%= f.radio_button :is_deleted, false %><%= f.label :有効 %>
-          <%= f.radio_button :is_deleted, true %><%= f.label :退会 %>
+          <%= f.radio_button :is_deleted, false %><%= f.label :is_deleted, '有効', value: false %>
+          <%= f.radio_button :is_deleted, true %><%= f.label :is_deleted, '退会', value: true %>
         </div>
       </div>
     </div>
