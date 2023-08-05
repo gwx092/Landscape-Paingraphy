@@ -25,8 +25,8 @@
 - 【admin】UI Flow(https://app.diagrams.net/#G1_qC0AGP4QmiLZymr_SkRdNP3k5d7-7xg)
 ​
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- OS：Amazon Linux release 2 (Karoo)
+- 言語：HTML,CSS,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
