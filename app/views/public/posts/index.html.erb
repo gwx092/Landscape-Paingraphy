@@ -3,7 +3,7 @@
     <% @posts.each do |post| %>
     <img class="card-img-top">
       <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image, size: "950x600" %>
+      <%= image_tag post.get_image, width: "100%" %>
       <% end %>
       <div class="card-body">
         <div class="row">

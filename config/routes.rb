@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     get '/users/information', to: 'users#show'
     get '/users/information/edit', to: 'users#edit'
     patch '/users/information', to: 'users#update'
-    resources :posts, only: [:new, :create, :show, :index, :destroy] do
+    resources :posts, only: [:new, :create, :show, :index, :edit, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
       #id不要のルーティング
       resource :favorites, only: [:create, :destroy]
