@@ -7,7 +7,7 @@
     <span>コメント：<%= comment.comment %></span>
     <span class="ml-4"><%= comment.created_at.strftime('%Y/%m/%d') %></span>
     <% if comment.user == current_user %>
-      <span class="ml-4"><%= link_to "コメントを削除", post_comment_path(comment.post, comment), method: :delete, remote: true, class:"btn btn-danger" %></span>
+      <span class="ml-4"><%= link_to "コメントを削除", post_comment_path(comment.post, comment), method: :delete, data: {confirm: "削除しますか？"}, remote: true, class:"btn btn-danger" %></span>
     <% end %>
   </div>
 <% end %>
